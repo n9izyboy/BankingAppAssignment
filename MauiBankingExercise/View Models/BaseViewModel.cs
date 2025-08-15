@@ -23,7 +23,6 @@ namespace MauiBankingExercise.View_Models
         public virtual void OnAppearing()
         {
 
-
         }
     }
 }

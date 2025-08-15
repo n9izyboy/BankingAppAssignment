@@ -17,20 +17,30 @@ namespace MauiBankingExercise.View_Models
             Title = "All Banks";
             LoadBanks();
         }
-        
-        
-        
-            public string Title { get; set; } = "All Banks";
+        public string Title { get; set; } = "All Banks";
       
             private BankingDataBaseServices bankingDataBaseServices = new BankingDataBaseServices();
         
         // Add properties and methods to manage the list of banks, customers, accounts, etc.
         // For example, you might have a property to hold a list of banks:
         public List<Bank> Banks { get; set; } = new List<Bank>();
+
+        public 
+
         
         public void LoadBanks()
         {
             // Logic to load banks from a database or API
+            try
+            {
+                // Assuming you have a method in BankingDataBaseServices to get all banks
+                Banks = bankingDataBaseServices.GetAllBanks();
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions, such as logging or showing an error message
+                Console.WriteLine($"Error loading banks: {ex.Message}");
+            }
         }
       
     }
