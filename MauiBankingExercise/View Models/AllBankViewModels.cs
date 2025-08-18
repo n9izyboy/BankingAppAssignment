@@ -24,10 +24,10 @@ namespace MauiBankingExercise.View_Models
         // Add properties and methods to manage the list of banks, customers, accounts, etc.
         // For example, you might have a property to hold a list of banks:
         public List<Bank> Banks { get; set; } = new List<Bank>();
-
-        public 
-
-        
+        public List<Bank> GetAllBanks()
+        {
+            return new List<Bank>();
+        }
         public void LoadBanks()
         {
             // Logic to load banks from a database or API
