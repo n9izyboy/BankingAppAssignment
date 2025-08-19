@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using MauiBankingExercise.Models;
+using System.ComponentModel;
 
 namespace MauiBankingExercise.View_Models
 {
@@ -21,12 +22,12 @@ namespace MauiBankingExercise.View_Models
       
             private BankingDataBaseServices bankingDataBaseServices = new BankingDataBaseServices();
         
-        // Add properties and methods to manage the list of banks, customers, accounts, etc.
-        // For example, you might have a property to hold a list of banks:
+        public Bank Bank { get; set; }
         public List<Bank> Banks { get; set; } = new List<Bank>();
         public List<Bank> GetAllBanks()
         {
             return new List<Bank>();
+
         }
         public void LoadBanks()
         {

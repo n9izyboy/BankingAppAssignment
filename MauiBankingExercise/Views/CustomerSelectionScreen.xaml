@@ -7,6 +7,23 @@
         <Label
             Text="Select A Customer"
             Style="{StaticResource Headline}"/>
+        <CollectionView
+
+            ItemsSource="{Binding Customers}"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedCustomer}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" BorderColor="Gray" CornerRadius="5">
+                        <Label Text="{Binding Name}" FontSize="Medium"/>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button
+            Text="Continue"
+            Command="{Binding ContinueCommand}"
+            IsEnabled="{Binding IsContinueEnabled}"/>
 
 
     </VerticalStackLayout>
