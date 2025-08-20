@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using MauiBankingExercise.Models;
 using System.ComponentModel;
 
-namespace MauiBankingExercise.View_Models
+namespace MauiBankingExercise.ViewModels
 {
     public partial class AllBankViewModels : BaseViewModel
     {

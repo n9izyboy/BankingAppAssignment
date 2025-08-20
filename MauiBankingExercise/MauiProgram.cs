@@ -17,6 +17,14 @@ namespace MauiBankingExercise
 
 #if DEBUG
     		builder.Logging.AddDebug();
+
+
+            builder.Services.AddSingleton<MauiBankingExercise.Services.BankingDataBaseServices>();
+            builder.Services.AddSingleton<MauiBankingExercise.ViewModels.AllBankViewModels>();
+            builder.Services.AddSingleton<MauiBankingExercise.ViewModels.BankViewModel>();
+            builder.Services.AddTransient<MauiBankingExercise.Views.CustomerSelectionScreen>();
+            
+
 #endif
 
             return builder.Build();

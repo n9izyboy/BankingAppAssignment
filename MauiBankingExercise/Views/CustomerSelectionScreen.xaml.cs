@@ -1,20 +1,15 @@
 using MauiBankingExercise.Views;
 using MauiBankingExercise.Models;
+
+using MauiBankingExercise.ViewModels;
 namespace MauiBankingExercise.Views;
 
 public partial class CustomerSelectionScreen : ContentPage
 {
-	public CustomerSelectionScreen()
+	public CustomerSelectionScreen(AllBankViewModels vm)
 	{
 		InitializeComponent();
-	}
-	private void OnCustomerSelected(object sender, SelectionChangedEventArgs e)
-	{
-		// Handle the selection of a customer
-		if (e.CurrentSelection.FirstOrDefault() is Customer selectedCustomer)
-		{
-			// Navigate to the next screen with the selected customer
-			Navigation.PushAsync(new CustomerDetailsScreen(selectedCustomer));
-		}
+		BindingContext = vm;
     }
+
 }

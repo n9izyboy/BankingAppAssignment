@@ -4,27 +4,33 @@
              x:Class="MauiBankingExercise.Views.CustomerSelectionScreen"
              Title="CustomerSelectionScreen">
     <VerticalStackLayout>
-        <Label
+        
+            <Label
             Text="Select A Customer"
             Style="{StaticResource Headline}"/>
-        <CollectionView
+        <Grid>
+            
+            <CollectionView
 
             ItemsSource="{Binding Customers}"
             SelectionMode="Single"
             SelectedItem="{Binding SelectedCustomer}">
-            <CollectionView.ItemTemplate>
+                <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Padding="10" Margin="5" BorderColor="Gray" CornerRadius="5">
                         <Label Text="{Binding Name}" FontSize="Medium"/>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-        </CollectionView>
+            </CollectionView>
+        </Grid>
+
+
         <Button
             Text="Continue"
             Command="{Binding ContinueCommand}"
             IsEnabled="{Binding IsContinueEnabled}"/>
 
-
+        
     </VerticalStackLayout>
 </ContentPage>

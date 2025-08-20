@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 
-namespace MauiBankingExercise.View_Models
+namespace MauiBankingExercise.ViewModels
 {
     public partial class BaseViewModel : INotifyPropertyChanged
     {

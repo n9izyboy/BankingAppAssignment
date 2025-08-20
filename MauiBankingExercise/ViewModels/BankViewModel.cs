@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MauiBankingExercise.View_Models
+namespace MauiBankingExercise.ViewModels
 {
     
     public partial class BankViewModel : BaseViewModel

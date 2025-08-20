@@ -72,7 +72,7 @@ namespace MauiBankingExercise.Services
 
         private SafeFileHandle GetPath()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         public BankingDataBaseServices(SQLite.SQLiteConnection dbconnection)
