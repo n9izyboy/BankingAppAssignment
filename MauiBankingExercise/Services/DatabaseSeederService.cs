@@ -7,7 +7,7 @@ namespace MauiBankingExercise.Services
 {
 
 
-    public static class BankingSeeder
+    public  class BankingSeeder
     {
         public static void Seed(SQLiteConnection db)
         {
@@ -216,6 +216,11 @@ namespace MauiBankingExercise.Services
 
             // Done!  
             Console.WriteLine("Database seeded with fake banking data.");
+        }
+
+        internal CustomerType GetCustomer()
+        {
+            throw new NotImplementedException();
         }
     }
 }

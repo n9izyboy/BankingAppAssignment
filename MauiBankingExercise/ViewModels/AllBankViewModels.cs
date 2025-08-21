@@ -8,41 +8,65 @@ using System.Text;
 using System.Threading.Tasks;
 using MauiBankingExercise.Models;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace MauiBankingExercise.ViewModels
 {
     public partial class AllBankViewModels : BaseViewModel
     {
-        public AllBankViewModels()
+        public ICommand MyButtonCommand { get; set; }
+
+        private BankingDataBaseServices _bankingDataBaseServices;
+        private ObservableCollection<Bank> _banks;
+
+
+        public ObservableCollection<Bank> Banks
         {
-            Title = "All Banks";
-            LoadBanks();
+            get => _banks;
+            set
+            {
+                _banks = value;
+                OnPropertyChanged();
+            }
         }
+       public AllBankViewModels(BankingDataBaseServices bankingDataBaseServices)
+        {
+            _bankingDataBaseServices = bankingDataBaseServices;
+            Banks = new ObservableCollection<Bank>(_bankingDataBaseServices.GetAllBanks());
+           
+        }
+
+        private void MyButtonAction(object obj)
+        {
+
+        }
+
         public string Title { get; set; } = "All Banks";
-      
-            private BankingDataBaseServices bankingDataBaseServices = new BankingDataBaseServices();
+
+        public async Task BankSelected(Bank bank)
+        {
+          var navigationParameters = new Dictionary<string, object>
+            {
+                { "Bank", bank }
+            };
+            await Shell.Current.GoToAsync(nameof(BankViewModel), navigationParameters);
+        }
+
+        private BankingDataBaseServices bankingDataBaseServices = new BankingDataBaseServices();
         
         public Bank Bank { get; set; }
-        public List<Bank> Banks { get; set; } = new List<Bank>();
+        public Action<object> MyButtonActiion { get; }
+
         public List<Bank> GetAllBanks()
         {
             return new List<Bank>();
 
         }
-        public void LoadBanks()
+        public override void OnAppearing()
         {
-            // Logic to load banks from a database or API
-            try
-            {
-                // Assuming you have a method in BankingDataBaseServices to get all banks
-                Banks = bankingDataBaseServices.GetAllBanks();
-            }
-            catch (Exception ex)
-            {
-                // Handle exceptions, such as logging or showing an error message
-                Console.WriteLine($"Error loading banks: {ex.Message}");
-            }
+            base.OnAppearing();
         }
+       
       
     }
 }

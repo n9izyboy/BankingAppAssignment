@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiBankingExercise.Views.CustomerSelectionScreen"
              Title="CustomerSelectionScreen">
+             
     <VerticalStackLayout>
         
             <Label
@@ -17,19 +18,26 @@
             SelectedItem="{Binding SelectedCustomer}">
                 <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="10" Margin="5" BorderColor="Gray" CornerRadius="5">
-                        <Label Text="{Binding Name}" FontSize="Medium"/>
-                    </Frame>
+                    <Frame Padding="10" Margin="5" BorderColor="Green" CornerRadius="5">
+                            <Label Text="{Binding Name}" FontSize="Medium"/>
+                        </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
+        
+        
+        <Grid>
+            <CollectionView>
 
+             
 
-        <Button
-            Text="Continue"
-            Command="{Binding ContinueCommand}"
-            IsEnabled="{Binding IsContinueEnabled}"/>
+            </CollectionView>  
+            
+            
+        </Grid>
+
+   
 
         
     </VerticalStackLayout>
