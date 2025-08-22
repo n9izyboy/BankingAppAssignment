@@ -26,9 +26,21 @@
         
         
         <Grid>
-            <CollectionView>
+            <CollectionView ItemsSource="{Binding CustomerType}"
+            SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
 
-             
+                     
+
+
+
+                    </DataTemplate>
+                    
+                    
+                </CollectionView.ItemTemplate>
+
+
 
             </CollectionView>  
             
