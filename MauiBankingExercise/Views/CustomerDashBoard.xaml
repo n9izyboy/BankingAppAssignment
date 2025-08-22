@@ -3,31 +3,148 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiBankingExercise.Views.CustomerDashBoard"
              Title="CustomerDashBoard">
-    <VerticalStackLayout>
-        <Grid>
-            <CollectionView
-            ItemsSource="{Binding Customers}"
-            SelectionMode="Single"
-            SelectedItem="{Binding SelectedCustomer}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Padding="10" Margin="5" BorderColor="Gray" CornerRadius="5">
-                            <Label Text="{Binding Name}" FontSize="Medium"/>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+    <Grid>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="25">
+                <!-- Header Section -->
+                <Border StrokeThickness="0" 
+                    BackgroundColor="#2C3E50"
+                    StrokeShape="RoundRectangle 15">
+                    <Grid Padding="25">
+                        <StackLayout Spacing="10">
+                            <Label Text="SecureBank" 
+                               FontSize="28" 
+                               FontAttributes="Bold" 
+                               TextColor="White"
+                               HorizontalTextAlignment="Center" />
+                            <Label Text="Select Your Account" 
+                               FontSize="16" 
+                               TextColor="#BDC3C7"
+                               HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </Grid>
+                </Border>
 
-            <Label
-            Text="Customer Dashboard"
-            Style="{StaticResource Headline}"
-            HorizontalOptions="Center"
-            VerticalOptions="Start"/>
-            <Button
-            Text="Add New Customer"
-            Command="{Binding AddNewCustomerCommand}"
-            HorizontalOptions="End"/>
+                <!-- Customer List -->
+                <CollectionView ItemsSource="{Binding Customers}"
+                            ItemsLayout="VerticalList"
+                            BackgroundColor="Transparent">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="5,10">
+                                <Border StrokeThickness="1" 
+                                    Stroke="#E8E8E8"
+                                    BackgroundColor="White"
+                                    StrokeShape="RoundRectangle 12">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectCustomerCommand}"
+                                                          CommandParameter="{Binding}" />
+                                    </Border.GestureRecognizers>
+
+                                    <Grid Padding="20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="30" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Avatar -->
+                                        <Border Grid.Column="0" 
+                                            WidthRequest="50" 
+                                            HeightRequest="50" 
+                                            StrokeShape="RoundRectangle 25"
+                                            BackgroundColor="#3498DB"
+                                            StrokeThickness="0"
+                                            VerticalOptions="Center">
+                                            <Label Text="U" 
+                                               FontSize="20" 
+                                               FontAttributes="Bold" 
+                                               TextColor="White"
+                                               HorizontalTextAlignment="Center"
+                                               VerticalTextAlignment="Center" />
+                                        </Border>
+
+                                        <!-- Customer Info -->
+                                        <StackLayout Grid.Column="1" 
+                                                 Spacing="6" 
+                                                 VerticalOptions="Center"
+                                                 Margin="15,0,0,0">
+                                            <Label Text="{Binding FullName}" 
+                                               FontSize="18" 
+                                               FontAttributes="Bold" 
+                                               TextColor="#2C3E50" />
+                                            <Label Text="{Binding Email}" 
+                                               FontSize="14" 
+                                               TextColor="#7F8C8D" />
+                                            <Label Text="{Binding PhoneNumber}" 
+                                               FontSize="14" 
+                                               TextColor="#95A5A6" />
+                                        </StackLayout>
+
+                                        <!-- Arrow -->
+                                        <Label Grid.Column="2" 
+                                           Text=">" 
+                                           FontSize="24" 
+                                           TextColor="#BDC3C7"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center" />
+                                    </Grid>
+                                </Border>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Empty State -->
+                <StackLayout Padding="20" 
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center">
+                    <Border StrokeThickness="1" 
+                        Stroke="#E8E8E8"
+                        BackgroundColor="White"
+                        StrokeShape="RoundRectangle 15">
+                        <Grid Padding="30">
+                            <StackLayout Spacing="15">
+                                <Label Text="No Customers Available" 
+                                   FontSize="18" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#7F8C8D"
+                                   HorizontalTextAlignment="Center" />
+                                <Label Text="Database may be loading or empty" 
+                                   FontSize="14" 
+                                   TextColor="#95A5A6"
+                                   HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                        </Grid>
+                    </Border>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Loading Indicator -->
+        <Grid IsVisible="{Binding IsLoading}" 
+          BackgroundColor="#80000000">
+            <Border StrokeThickness="0" 
+                BackgroundColor="#2C3E50"
+                StrokeShape="RoundRectangle 10"
+                WidthRequest="120"
+                HeightRequest="120"
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+                <Grid Padding="30">
+                    <StackLayout Spacing="15">
+                        <ActivityIndicator IsRunning="{Binding IsLoading}"
+                                       Color="White"
+                                       WidthRequest="40"
+                                       HeightRequest="40" />
+                        <Label Text="Loading customers..." 
+                           TextColor="White" 
+                           FontSize="14"
+                           HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </Grid>
+            </Border>
         </Grid>
-
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>
