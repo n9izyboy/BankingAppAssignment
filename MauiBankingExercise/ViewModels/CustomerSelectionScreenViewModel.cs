@@ -14,39 +14,81 @@ namespace MauiBankingExercise.ViewModels
 {
     public partial class CustomerSelectionScreenViewModel : BaseViewModel
     {
-        private BankingSeeder _bankingSeeder;
+        private readonly DataBaseService _dataBaseService;
         private Customer _customer;
-        
+        private bool _isLoading;
 
-        public Customer customer
-         {
-            get { return _customer; }
-            set
-            {
-                _customer = value;
-
-                _customer.CustomerType = _bankingSeeder.GetCustomer();
-
-                OnPropertyChanged();
-            } 
-         }
-
-        public CustomerSelectionScreenViewModel(BankingSeeder bankingSeeder)
-        {   _bankingSeeder = bankingSeeder;
-            
-        }
-
-
-        public override void OnAppearing()
+        public CustomerSelectionScreenViewModel(DatabaseService databaseService)
         {
-            base.OnAppearing();
+            _databaseService = databaseService;
+            SelectCustomerCommand = new Command<Customer>(OnSelectCustomer);
         }
 
-        
+        public ObservableCollection<Customer> Customers
+        {
+            get => _customers;
+            set => SetProperty(ref _customers, value);
+        }
+
+        private void SetProperty(ref ObservableCollection<Customer> customers, ObservableCollection<Customer> value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set => SetProperty(ref _isLoading, value);
+        }
+
+        private void SetProperty(ref bool isLoading, bool value)
+        {
+            throw new NotImplementedException();
+        }
+
+        private DatabaseService _databaseService;
+        private ObservableCollection<Customer> _customers;
+
+        public ICommand SelectCustomerCommand { get; }
+
+        public async Task LoadCustomersAsync()
+        {
+            IsLoading = true;
+            try
+            {
+                var customers = await _databaseService.GetCustomersAsync();
+                Customers.Clear();
+                foreach (var customer in customers)
+                {
+                    Customers.Add((Customer)customer);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle error
+                System.Diagnostics.Debug.WriteLine($"Error loading customers: {ex.Message}");
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        private async void OnSelectCustomer(Customer customer)
+        {
+            if (customer != null)
+            {
+                await Shell.Current.GoToAsync($"CustomerDashboard?customerId={customer.CustomerId}");
+            }
+        }
 
 
 
-         
+
+
+
+
+
 
 
 
