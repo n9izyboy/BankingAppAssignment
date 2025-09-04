@@ -223,7 +223,7 @@ namespace MauiBankingExercise.Services
             throw new NotImplementedException();
         }
 
-        internal async Task<IEnumerable<object>> GetCustomersAsync()
+        internal Task<IEnumerable<object>> GetCustomersAsync()
         {
             throw new NotImplementedException();
         }
