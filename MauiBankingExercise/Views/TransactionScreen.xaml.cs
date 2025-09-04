@@ -1,4 +1,5 @@
 namespace MauiBankingExercise.Views;
+using MauiBankingExercise.ViewModels;
 
 public partial class TransactionScreen : ContentPage
 {
@@ -6,4 +7,10 @@ public partial class TransactionScreen : ContentPage
 	{
 		InitializeComponent();
 	}
+
+		public TransactionScreen(TransactionScreenViewModel vm)
+		{
+			InitializeComponent();
+			BindingContext = vm;
+    }
 }

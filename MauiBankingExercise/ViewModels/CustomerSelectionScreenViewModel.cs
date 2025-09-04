@@ -18,9 +18,9 @@ namespace MauiBankingExercise.ViewModels
         private Customer _customer;
         private bool _isLoading;
 
-        public CustomerSelectionScreenViewModel(DatabaseService databaseService)
+        public CustomerSelectionScreenViewModel(BankingSeeder _bankingSeeder)
         {
-            _databaseService = databaseService;
+            BankingSeeder = _bankingSeeder;
             SelectCustomerCommand = new Command<Customer>(OnSelectCustomer);
         }
 
@@ -46,9 +46,10 @@ namespace MauiBankingExercise.ViewModels
             throw new NotImplementedException();
         }
 
-        private DatabaseService _databaseService;
+        private BankingSeeder _bankingSeeder;
         private ObservableCollection<Customer> _customers;
 
+        public BankingSeeder BankingSeeder { get; }
         public ICommand SelectCustomerCommand { get; }
 
         public async Task LoadCustomersAsync()
@@ -56,7 +57,7 @@ namespace MauiBankingExercise.ViewModels
             IsLoading = true;
             try
             {
-                var customers = await _databaseService.GetCustomersAsync();
+                var customers = await _bankingSeeder.GetCustomersAsync();
                 Customers.Clear();
                 foreach (var customer in customers)
                 {

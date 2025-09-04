@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiBankingExercise.Views.AccountDetails"
-             Title="AccountDetails">
+             Title="Account Details">
 
     <ScrollView>
         <StackLayout Padding="20" Spacing="25">
-            <!-- Account Info Card -->
+            
             <Border StrokeThickness="0" 
                  BackgroundColor="#2C3E50"
                  StrokeShape="RoundRectangle 15">
@@ -27,7 +27,7 @@
                 </Grid>
             </Border>
 
-            <!-- Transaction Form -->
+           
             <Border StrokeThickness="1" 
                  Stroke="#E8E8E8"
                  BackgroundColor="White"
@@ -43,7 +43,7 @@
                                 VerticalTextAlignment="Center" />
                         </StackLayout>
 
-                        <!-- Transaction Type -->
+                      
                         <StackLayout Spacing="8">
                             <Label Text="Transaction Type" 
                                 FontSize="16" 
@@ -60,7 +60,7 @@
                             </Border>
                         </StackLayout>
 
-                        <!-- Amount -->
+                       
                         <StackLayout Spacing="8">
                             <Label Text="Amount" 
                                 FontSize="16" 
@@ -79,7 +79,7 @@
                             </Border>
                         </StackLayout>
 
-                        <!-- Submit Button -->
+                        
                         <Button Text="Process Transaction" 
                              Command="{Binding SubmitTransactionCommand}" 
                              BackgroundColor="#3498DB" 
@@ -92,7 +92,7 @@
                 </Grid>
             </Border>
 
-            <!-- Transaction History -->
+            
             <StackLayout Spacing="15">
                 <StackLayout Orientation="Horizontal" 
                           Spacing="10">
@@ -119,7 +119,7 @@
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
 
-                                        <!-- Icon -->
+                                        
                                         <Border Grid.Column="0" 
                                              WidthRequest="40" 
                                              HeightRequest="40" 
@@ -157,7 +157,7 @@
                                             </Label>
                                         </Border>
 
-                                        <!-- Transaction Details -->
+                                       
                                         <StackLayout Grid.Column="1" 
                                                   Spacing="4" 
                                                   VerticalOptions="Center"
@@ -174,7 +174,7 @@
                                                 TextColor="#95A5A6" />
                                         </StackLayout>
 
-                                        <!-- Amount -->
+                                       
                                         <StackLayout Grid.Column="2" 
                                                   VerticalOptions="Center"
                                                   HorizontalOptions="End">
@@ -204,7 +204,7 @@
                 </CollectionView>
             </StackLayout>
 
-            <!-- Loading Indicator -->
+            
             <ActivityIndicator IsVisible="{Binding IsLoading}" 
                             IsRunning="{Binding IsLoading}"
                             Color="#3498DB"

@@ -10,8 +10,8 @@ public partial class CustomerDashBoard : ContentPage
 	{
 		InitializeComponent();
 
-        
+        BindingContext = vm;
 
 
-	}
+    }
 }

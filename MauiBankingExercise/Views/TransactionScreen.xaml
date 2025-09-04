@@ -5,7 +5,7 @@
     <ScrollView>
     <StackLayout Padding="16" Spacing="20">
 
-        <!-- Account Info -->
+        
         <StackLayout Padding="20" BackgroundColor="#6B8E23" Spacing="8">
             <Label Text="Account Overview" 
                    FontSize="18" 
@@ -20,14 +20,14 @@
                    TextColor="White" />
         </StackLayout>
 
-        <!-- Transaction Form -->
+        
         <StackLayout Padding="20" BackgroundColor="White" Spacing="16">
             <Label Text="New Transaction" 
                    FontSize="18" 
                    FontAttributes="Bold" 
                    TextColor="#556B2F" />
 
-            <!-- Transaction Type -->
+            
             <StackLayout Spacing="4">
                 <Label Text="Type" 
                        FontSize="14" 
@@ -38,7 +38,7 @@
                         TextColor="#556B2F" />
             </StackLayout>
 
-            <!-- Amount -->
+            
             <StackLayout Spacing="4">
                 <Label Text="Amount" 
                        FontSize="14" 
@@ -51,7 +51,7 @@
                        PlaceholderColor="#808080" />
             </StackLayout>
 
-            <!-- Submit Button -->
+            
             <Button Text="Process Transaction" 
                     Command="{Binding SubmitTransactionCommand}" 
                     BackgroundColor="#8FBC8F" 
@@ -59,7 +59,7 @@
                     FontSize="16" />
         </StackLayout>
 
-        <!-- Transaction History -->
+        
         <StackLayout Spacing="12">
             <Label Text="Recent Transactions" 
                    FontSize="18" 
@@ -77,7 +77,7 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <!-- Simple Icon -->
+                            
                             <Label Grid.Column="0" 
                                    FontSize="16" 
                                    VerticalTextAlignment="Center">
@@ -97,7 +97,7 @@
                                 </Label.Triggers>
                             </Label>
 
-                            <!-- Transaction Info -->
+                            
                             <StackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
                                 <Label Text="{Binding TransactionType.Name}" 
                                        FontSize="14" 
@@ -108,7 +108,7 @@
                                        TextColor="#808080" />
                             </StackLayout>
 
-                            <!-- Amount -->
+                            
                             <Label Grid.Column="2" 
                                    Text="{Binding Amount, StringFormat='{0:C}'}" 
                                    FontSize="16" 
@@ -133,7 +133,7 @@
             </CollectionView>
         </StackLayout>
 
-        <!-- Loading -->
+        
         <ActivityIndicator IsVisible="{Binding IsLoading}" 
                           IsRunning="{Binding IsLoading}"
                           Color="#6B8E23" />

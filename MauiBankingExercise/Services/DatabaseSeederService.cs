@@ -7,7 +7,7 @@ namespace MauiBankingExercise.Services
 {
 
 
-    public  class BankingSeeder
+    public class BankingSeeder
     {
         public static void Seed(SQLiteConnection db)
         {
@@ -219,6 +219,11 @@ namespace MauiBankingExercise.Services
         }
 
         internal CustomerType GetCustomer()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task<IEnumerable<object>> GetCustomersAsync()
         {
             throw new NotImplementedException();
         }
