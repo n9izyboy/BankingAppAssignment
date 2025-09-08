@@ -30,7 +30,7 @@ namespace MauiBankingExercise
             builder.Services.AddSingleton<MauiBankingExercise.Views.AccountDetails>();
             builder.Services.AddSingleton<MauiBankingExercise.ViewModels.CustomerSelectionScreenViewModel>();
             builder.Services.AddSingleton<MauiBankingExercise.Views.CustomerDashBoard>();
-            builder.Services.AddSingleton<MauiBankingExercise.ViewModels.CustomerDashBoard>();
+            builder.Services.AddSingleton<MauiBankingExercise.ViewModels.CustomerDashBoardViewModel>();
             builder.Services.AddSingleton<MauiBankingExercise.Views.TransactionScreen>();
 
 

@@ -11,7 +11,7 @@ using MauiBankingExercise.Models;
 
 namespace MauiBankingExercise.ViewModels
 {
-    public partial class CustomerDashBoard : BaseViewModel
+    public partial class CustomerDashBoardViewModel : BaseViewModel
     {
 
 
@@ -37,7 +37,7 @@ namespace MauiBankingExercise.ViewModels
                 OnPropertyChanged();
             }
         }
-        public CustomerDashBoard(Account account, Customer customer)
+        public CustomerDashBoardViewModel(Account account, Customer customer)
         {
             this.account = account;
             this.customer = customer;

@@ -67,10 +67,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\CustomerDashBoardView.xaml.cs">
+	    <DependentUpon>CustomerDashBoardView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Views\AccountDetails.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\CustomerDashBoard.xaml">
+	  <MauiXaml Update="Views\CustomerDashBoardView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\CustomerSelectionScreen.xaml">

@@ -6,7 +6,7 @@ namespace MauiBankingExercise.Views;
 
 public partial class CustomerSelectionScreen : ContentPage
 {
-	public CustomerSelectionScreen(AllBankViewModels vm)
+	public CustomerSelectionScreen(CustomerSelectionScreenViewModel vm)
 	{
 		InitializeComponent();
 		BindingContext = vm;

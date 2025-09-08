@@ -6,7 +6,7 @@ namespace MauiBankingExercise.Views;
 
 public partial class CustomerDashBoard : ContentPage
 {
-	public CustomerDashBoard(AllBankViewModels vm)
+	public CustomerDashBoard(CustomerDashBoard vm)
 	{
 		InitializeComponent();
 

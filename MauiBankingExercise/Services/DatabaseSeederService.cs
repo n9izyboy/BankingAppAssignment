@@ -218,12 +218,27 @@ namespace MauiBankingExercise.Services
             Console.WriteLine("Database seeded with fake banking data.");
         }
 
+        internal async Task<Account> GetAccountAsync(int customerId)
+        {
+            throw new NotImplementedException();
+        }
+
         internal CustomerType GetCustomer()
         {
             throw new NotImplementedException();
         }
 
         internal Task<IEnumerable<object>> GetCustomersAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task<IEnumerable<object>> GetTransactionsAsync(int customerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task ProcessTransactionAsync(int customerId, string name, decimal amount)
         {
             throw new NotImplementedException();
         }
