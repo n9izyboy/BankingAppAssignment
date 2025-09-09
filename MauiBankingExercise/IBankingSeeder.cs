@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MauiBankingExercise.ViewModels
+namespace MauiBankingExercise
 {
-    class DataBaseService
+    internal interface IBankingSeeder
     {
     }
 }
