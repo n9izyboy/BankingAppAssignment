@@ -11,9 +11,11 @@ using MauiBankingExercise.Models;
 
 namespace MauiBankingExercise.ViewModels
 {
+    [QueryProperty(nameof(Customer), "Customer")]
+    [QueryProperty(nameof(Account), "Account")]
     public partial class CustomerDashBoardViewModel : BaseViewModel
     {
-
+        
 
         public Account account
         {
@@ -42,5 +44,8 @@ namespace MauiBankingExercise.ViewModels
             this.account = account;
             this.customer = customer;
         }
-    }
+    }    
+
+       
+        
 }

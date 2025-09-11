@@ -1,6 +1,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiBankingExercise.Views.CustomerSelectionScreen"
+             x:Class="MauiBankingExercise.Views.CustomerSelectionScreenView"
              Title="Select a Customer">
 
     <ScrollView>
@@ -11,11 +11,11 @@
                   StrokeShape="RoundRectangle 15">
                 <Grid Padding="25">
                     <StackLayout Spacing="12">
-                        <Label Text="Welcome Back!" 
+                        <Label Text="Hello There!" 
                              FontSize="24" 
                              FontAttributes="Bold" 
                              TextColor="White" />
-                        <Label Text="{Binding Customer.FullName}" 
+                        <Label Text="{Binding Customer.FirstName}" 
                              FontSize="20" 
                              FontAttributes="Bold"
                              TextColor="White" />
@@ -29,7 +29,7 @@
             <!-- Accounts Header -->
             <StackLayout Orientation="Horizontal" 
                        Spacing="10">
-                <Label Text="Your Accounts" 
+                <Label Text="Users" 
                      FontSize="22" 
                      FontAttributes="Bold" 
                      TextColor="#2C3E50"

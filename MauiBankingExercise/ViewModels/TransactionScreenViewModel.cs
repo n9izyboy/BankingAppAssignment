@@ -16,6 +16,7 @@ namespace MauiBankingExercise.ViewModels
 {
     public class TransactionScreenViewModel
     {
+        
 
         public class TransactionViewModel : INotifyPropertyChanged, IQueryAttributable
         {

@@ -14,6 +14,7 @@ using System.Windows.Input;
 
 namespace MauiBankingExercise.ViewModels
 {
+    
     public partial class CustomerSelectionScreenViewModel : BaseViewModel
     {
         private readonly BankingSeeder bankingSeeder;

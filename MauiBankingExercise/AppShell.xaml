@@ -9,7 +9,7 @@
 
     <ShellContent
         Title="Banking "
-        ContentTemplate="{DataTemplate views:CustomerDashBoard}"
+        ContentTemplate="{DataTemplate views:CustomerSelectionScreenView}"
         Route="MainPage" />
     
 
