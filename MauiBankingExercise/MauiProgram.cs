@@ -2,7 +2,7 @@
 using MauiBankingExercise.ViewModels;
 using Microsoft.AspNet.SignalR.Infrastructure;
 using Microsoft.Extensions.Logging;
-using SQLitePCL; // Add this using
+using SQLitePCL; 
 
 namespace MauiBankingExercise
 {
@@ -10,7 +10,7 @@ namespace MauiBankingExercise
     {
         public static MauiApp CreateMauiApp()
         {
-            Batteries_V2.Init(); // Initialize SQLite provider
+            Batteries_V2.Init(); 
 
             var builder = MauiApp.CreateBuilder();
             builder
@@ -24,7 +24,7 @@ namespace MauiBankingExercise
             string dbPath = BankingDataBaseServices.GetInstance().GetDatabasePath();
             var db = new SQLite.SQLiteConnection(dbPath);
 
-            builder.Services.AddSingleton(db); // Register SQLiteConnection
+            builder.Services.AddSingleton(db);
             builder.Services.AddSingleton<BankingSeeder>();
 
 #if DEBUG
