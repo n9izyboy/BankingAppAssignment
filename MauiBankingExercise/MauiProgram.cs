@@ -1,6 +1,8 @@
 ﻿using MauiBankingExercise.Services;
 using MauiBankingExercise.ViewModels;
+using Microsoft.AspNet.SignalR.Infrastructure;
 using Microsoft.Extensions.Logging;
+using SQLitePCL; // Add this using
 
 namespace MauiBankingExercise
 {
@@ -8,6 +10,8 @@ namespace MauiBankingExercise
     {
         public static MauiApp CreateMauiApp()
         {
+            Batteries_V2.Init(); // Initialize SQLite provider
+
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
@@ -17,14 +21,18 @@ namespace MauiBankingExercise
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
+            string dbPath = BankingDataBaseServices.GetInstance().GetDatabasePath();
+            var db = new SQLite.SQLiteConnection(dbPath);
+
+            builder.Services.AddSingleton(db); // Register SQLiteConnection
             builder.Services.AddSingleton<BankingSeeder>();
 
-    		builder.Logging.AddDebug();
+#if DEBUG
+            builder.Logging.AddDebug();
 
 
-            builder.Services.AddSingleton<MauiBankingExercise.Services.BankingDataBaseServices>();
-            builder.Services.AddSingleton<MauiBankingExercise.ViewModels.AllBankViewModels>();
+
+            builder.Services.AddSingleton<MauiBankingExercise.Services.BankingSeeder>();
             builder.Services.AddSingleton<MauiBankingExercise.ViewModels.BankViewModel>();
             builder.Services.AddTransient<MauiBankingExercise.Views.CustomerSelectionScreenView>();
             builder.Services.AddSingleton<MauiBankingExercise.Views.AccountDetails>();
@@ -40,3 +48,5 @@ namespace MauiBankingExercise
         }
     }
 }
+
+

@@ -3,12 +3,25 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 
+
 namespace MauiBankingExercise.Services
 {
 
 
     public class BankingSeeder
     {
+
+        private readonly SQLiteConnection _db;
+
+        public BankingSeeder(SQLiteConnection db)
+        {
+            _db = db;
+        }
+        public CustomerType GetCustomerType(int customerTypeId)
+        {
+            return _db.Find<CustomerType>(customerTypeId);
+        }
+
         public static void Seed(SQLiteConnection db)
         {
             // Ensure tables are created  
@@ -220,27 +233,68 @@ namespace MauiBankingExercise.Services
 
         internal async Task<Account> GetAccountAsync(int customerId)
         {
-            throw new NotImplementedException();
+            return _db.Table<Account>()
+                .Where(a => a.CustomerId == customerId)
+                .FirstOrDefault();
         }
 
         internal CustomerType GetCustomer()
         {
-            throw new NotImplementedException();
+            return _db.Table<CustomerType>().FirstOrDefault();
         }
 
         internal Task<IEnumerable<object>> GetCustomersAsync()
         {
-            throw new NotImplementedException();
+            var customers = _db.Table<Customer>()
+                .ToList()
+                .Select(c => (object)c);
+            return Task.FromResult(customers);
         }
 
         internal async Task<IEnumerable<object>> GetTransactionsAsync(int customerId)
         {
-            throw new NotImplementedException();
+            var account = await GetAccountAsync(customerId);
+            if (account == null) return new List<object>();
+
+            var transactions = _db.Table<Transaction>()
+                .Where(t => t.AccountId == account.AccountId)
+                .ToList()
+                .Select(t => (object)t);
+            return transactions;
         }
 
-        internal async Task ProcessTransactionAsync(int customerId, string name, decimal amount)
+        internal async Task ProcessTransactionAsync(int customerId, string description, decimal amount)
         {
-            throw new NotImplementedException();
+            var account = await GetAccountAsync(customerId);
+            if (account == null) throw new InvalidOperationException("Account not found");
+
+            
+            _db.BeginTransaction();
+            try
+            {
+                // Update account balance
+                account.AccountBalance += amount;
+                _db.Update(account);
+
+                // Create transaction record
+                var transactionType = amount > 0 ? 1 : 2; // 1 for Deposit, 2 for Withdrawal
+                var trans = new Transaction
+                {
+                    AccountId = account.AccountId,
+                    TransactionTypeId = transactionType,
+                    Amount = amount,
+                    Description = description,
+                    TransactionDate = DateTime.Now
+                };
+                _db.Insert(trans);
+
+                _db.Commit();
+            }
+            catch
+            {
+                _db.Rollback();
+                throw;
+            }
         }
     }
 }
